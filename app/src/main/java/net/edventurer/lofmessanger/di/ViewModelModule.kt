@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
-import net.edventurer.lofmessanger.MyViewModelFactory
 import net.edventurer.lofmessanger.ui.main.MainActivityViewModel
 
 /**

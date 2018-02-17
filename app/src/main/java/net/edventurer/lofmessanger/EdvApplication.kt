@@ -12,7 +12,7 @@ import timber.log.Timber
  * mvvm -> mvi (intent, render(state))
  * implement function
  * fake server
- * FCM
+ * (fork: FCM, real server)
  */
 class EdvApplication: DaggerApplication() {
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {

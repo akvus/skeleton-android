@@ -1,4 +1,4 @@
-package net.edventurer.lofmessanger
+package net.edventurer.lofmessanger.di
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
