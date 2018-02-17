@@ -12,3 +12,5 @@ object InitIntention: MainIntention()
 data class SendMessageIntention(val message: String) : MainIntention()
 
 data class DeleteMessageIntention(val id: String) : MainIntention()
+
+object RetrieveMessages: MainIntention()

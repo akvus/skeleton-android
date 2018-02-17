@@ -14,6 +14,6 @@ interface ApiInterface {
     fun postMessage(@Field("id") id: String, @Field("message") message: String)
             : Observable<NetworkResponse>
 
-    @GET("message/{id}")
-    fun getMessages(@Path("id") id: String) : Observable<MessagesResponse>
+    @GET("message/{nickname}")
+    fun retrieveMessages(@Path("nickname") nickname: String) : Observable<MessagesResponse>
 }

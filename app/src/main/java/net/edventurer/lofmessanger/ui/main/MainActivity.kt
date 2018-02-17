@@ -19,12 +19,15 @@ class MainActivity : MyDaggerAppCompactActivity<MainViewState>() {
 
     private var viewModel: MainActivityViewModel? = null
 
+    private var adapter: MessagesAdapter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setUpViewModel()
         setUpView()
+        viewModel?.process(InitIntention)
     }
 
     private fun setUpViewModel() {
@@ -36,7 +39,8 @@ class MainActivity : MyDaggerAppCompactActivity<MainViewState>() {
     }
 
     private fun setUpView() {
-        rvMessages.adapter = MessagesAdapter()
+        adapter = MessagesAdapter()
+        rvMessages.adapter = adapter
         rvMessages.layoutManager = LinearLayoutManager(this)
 
         etMessage.setOnKeyListener({ v, keyCode, event ->
@@ -55,7 +59,7 @@ class MainActivity : MyDaggerAppCompactActivity<MainViewState>() {
 
     override fun render(viewState: MainViewState) {
         if (viewState.messages != null) {
-            // todo render
+            adapter?.replaceMessages(viewState.messages)
         }
     }
 }

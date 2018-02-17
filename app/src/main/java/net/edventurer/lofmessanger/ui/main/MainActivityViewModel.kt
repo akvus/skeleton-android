@@ -1,8 +1,11 @@
 package net.edventurer.lofmessanger.ui.main
 
-import android.arch.lifecycle.MutableLiveData
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import net.edventurer.lofmessanger.arch.MyViewModel
+import net.edventurer.lofmessanger.ext.plus
 import net.edventurer.lofmessanger.net.ApiInterface
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -10,28 +13,44 @@ import javax.inject.Inject
  */
 class MainActivityViewModel @Inject constructor(
         private val apiInterface: ApiInterface
-) : MyViewModel<MainIntention>() {
-    val state: MutableLiveData<MainViewState> by lazy {
-        MutableLiveData<MainViewState>()
-    }
+) : MyViewModel<MainIntention, MainViewState>() {
 
     override fun process(intention: MainIntention) {
-        when(intention) {
-            InitIntention -> init()
+        when (intention) {
+            InitIntention -> {
+                getMessages()
+                retrieveMessages()
+            }
             is SendMessageIntention -> {
                 sendMessage(intention.message)
                 saveMessage(intention.message)
             }
             is DeleteMessageIntention -> deleteMessage(intention.id)
+            RetrieveMessages -> retrieveMessages()
         }
+    }
+
+    override fun initViewState(): MainViewState { // todo is there a better generic way? a factory?
+        return MainViewState.init()
+    }
+
+    private fun retrieveMessages() {
+        disposables += apiInterface.retrieveMessages("Bob")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe ({ response ->
+                    state.postValue(getState().copy(messages = response.messages))
+                }, {
+                    Timber.e(it)
+                })
     }
 
     private fun saveMessage(message: String) {
         // todo room
     }
 
-    private fun init() {
-        // todo get msgs from room and init state
+    private fun getMessages() {
+        // todo room
     }
 
     private fun sendMessage(message: String) {

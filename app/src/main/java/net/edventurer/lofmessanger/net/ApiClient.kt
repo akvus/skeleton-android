@@ -17,6 +17,7 @@ object ApiClient {
             httpClientBuilder.addInterceptor(HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BODY
             })
+            httpClientBuilder.interceptors().add(FakeInterceptor())
         }
         Retrofit.Builder()
                 .baseUrl("http://api.example.com/v1/")
