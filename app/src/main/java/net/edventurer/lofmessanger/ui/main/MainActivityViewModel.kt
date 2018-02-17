@@ -1,8 +1,7 @@
 package net.edventurer.lofmessanger.ui.main
 
-import android.arch.lifecycle.ViewModel
+import net.edventurer.lofmessanger.arch.MyViewModel
 import net.edventurer.lofmessanger.net.ApiInterface
-import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -10,9 +9,13 @@ import javax.inject.Inject
  */
 class MainActivityViewModel @Inject constructor(
         private val apiInterface: ApiInterface
-) : ViewModel() {
-    fun test() {
-        Timber.e("TEST");
+) : MyViewModel<MainIntention>() {
+
+    override fun process(intention: MainIntention) {
+        when(intention) {
+            is SendMessageIntention -> {}
+            is DeleteMessageIntention -> {}
+        }
     }
 
 }

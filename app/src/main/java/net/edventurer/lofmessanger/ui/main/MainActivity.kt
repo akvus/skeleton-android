@@ -30,16 +30,19 @@ class MainActivity : DaggerAppCompatActivity() {
     }
 
     private fun setUpView() {
+        rvMessages.adapter = MessagesAdapter()
+        rvMessages.layoutManager = LinearLayoutManager(this)
+
         etMessage.setOnKeyListener({ v, keyCode, event ->
             if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
                 btnSend.performClick()
                 true
-            }else {
+            } else {
                 false
             }
         })
+        btnSend.setOnClickListener {
 
-        rvMessages.adapter = MessagesAdapter()
-        rvMessages.layoutManager = LinearLayoutManager(this)
+        }
     }
 }
