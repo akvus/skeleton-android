@@ -13,6 +13,7 @@ class MainActivityViewModel @Inject constructor(
 
     override fun process(intention: MainIntention) {
         when(intention) {
+            InitIntention -> {}
             is SendMessageIntention -> {}
             is DeleteMessageIntention -> {}
         }

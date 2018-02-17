@@ -7,6 +7,8 @@ import net.edventurer.lofmessanger.arch.Intention
  */
 sealed class MainIntention : Intention
 
+object InitIntention: MainIntention()
+
 data class SendMessageIntention(val message: String) : MainIntention()
 
 data class DeleteMessageIntention(val id: String) : MainIntention()

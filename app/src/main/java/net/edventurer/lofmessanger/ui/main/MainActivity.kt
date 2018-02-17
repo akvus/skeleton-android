@@ -25,7 +25,6 @@ class MainActivity : DaggerAppCompatActivity() {
         mainActivityViewModel = ViewModelProviders.of(this, viewModelProvider)
                 .get(MainActivityViewModel::class.java);
 
-        mainActivityViewModel?.test()
         setUpView()
     }
 
