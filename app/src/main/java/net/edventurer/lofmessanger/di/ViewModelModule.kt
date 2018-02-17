@@ -18,6 +18,5 @@ abstract class ViewModelModule {
     internal abstract fun mainViewModel(userViewModel: MainActivityViewModel): ViewModel
 
     @Binds
-    abstract fun bindViewModelFactory( factory: MyViewModelFactory):
-            ViewModelProvider.Factory
+    abstract fun bindViewModelFactory(factory: MyViewModelFactory): ViewModelProvider.Factory
 }
