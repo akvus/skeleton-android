@@ -1,17 +1,18 @@
 package net.edventurer.lofmessanger.ui.main
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.KeyEvent
 import dagger.android.AndroidInjection
-import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import net.edventurer.lofmessanger.R
+import net.edventurer.lofmessanger.arch.MyDaggerAppCompactActivity
 import javax.inject.Inject
 
-class MainActivity : DaggerAppCompatActivity() {
+class MainActivity : MyDaggerAppCompactActivity<MainViewState>() {
 
     @Inject
     lateinit var viewModelProvider: ViewModelProvider.Factory
@@ -22,10 +23,16 @@ class MainActivity : DaggerAppCompatActivity() {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setUpViewModel()
+        setUpView()
+    }
+
+    private fun setUpViewModel() {
         mainActivityViewModel = ViewModelProviders.of(this, viewModelProvider)
                 .get(MainActivityViewModel::class.java);
-
-        setUpView()
+        mainActivityViewModel?.state?.observe(this, Observer<MainViewState> {
+            it?.let { render(it) }
+        })
     }
 
     private fun setUpView() {
@@ -43,5 +50,9 @@ class MainActivity : DaggerAppCompatActivity() {
         btnSend.setOnClickListener {
 
         }
+    }
+
+    override fun render(viewState: MainViewState) {
+
     }
 }
