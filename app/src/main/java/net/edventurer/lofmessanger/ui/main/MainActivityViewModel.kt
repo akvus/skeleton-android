@@ -5,8 +5,6 @@ import net.edventurer.lofmessanger.arch.MyViewModel
 import net.edventurer.lofmessanger.net.ApiInterface
 import javax.inject.Inject
 
-
-
 /**
  * Created by akvus on 2/17/18.
  */
@@ -19,10 +17,28 @@ class MainActivityViewModel @Inject constructor(
 
     override fun process(intention: MainIntention) {
         when(intention) {
-            InitIntention -> {}
-            is SendMessageIntention -> {}
-            is DeleteMessageIntention -> {}
+            InitIntention -> init()
+            is SendMessageIntention -> {
+                sendMessage(intention.message)
+                saveMessage(intention.message)
+            }
+            is DeleteMessageIntention -> deleteMessage(intention.id)
         }
     }
 
+    private fun saveMessage(message: String) {
+        // todo room
+    }
+
+    private fun init() {
+        // todo get msgs from room and init state
+    }
+
+    private fun sendMessage(message: String) {
+        // todo retrofit
+    }
+
+    private fun deleteMessage(id: String) {
+        // todo retrofit
+    }
 }

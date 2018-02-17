@@ -17,7 +17,7 @@ class MainActivity : MyDaggerAppCompactActivity<MainViewState>() {
     @Inject
     lateinit var viewModelProvider: ViewModelProvider.Factory
 
-    private var mainActivityViewModel: MainActivityViewModel? = null
+    private var viewModel: MainActivityViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -28,9 +28,9 @@ class MainActivity : MyDaggerAppCompactActivity<MainViewState>() {
     }
 
     private fun setUpViewModel() {
-        mainActivityViewModel = ViewModelProviders.of(this, viewModelProvider)
+        viewModel = ViewModelProviders.of(this, viewModelProvider)
                 .get(MainActivityViewModel::class.java);
-        mainActivityViewModel?.state?.observe(this, Observer<MainViewState> {
+        viewModel?.state?.observe(this, Observer<MainViewState> {
             it?.let { render(it) }
         })
     }
@@ -48,11 +48,14 @@ class MainActivity : MyDaggerAppCompactActivity<MainViewState>() {
             }
         })
         btnSend.setOnClickListener {
-
+            viewModel?.process(SendMessageIntention(etMessage.text.toString()))
+            etMessage.setText("")
         }
     }
 
     override fun render(viewState: MainViewState) {
-
+        if (viewState.messages != null) {
+            // todo render
+        }
     }
 }

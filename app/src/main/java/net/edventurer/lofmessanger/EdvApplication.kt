@@ -9,9 +9,11 @@ import timber.log.Timber
  * Created by akvus on 2/17/18.
  *
  * todo
- * mvvm -> mvi (intent, render(state))
- * implement function
- * fake server
+ * - how to not re-render unchanged data
+ * - how to handle once-of events, i.e. Toast, Snackbar
+ * --
+ * - setup room
+ * - implement app, fake server
  * (fork: FCM, real server)
  */
 class EdvApplication: DaggerApplication() {
