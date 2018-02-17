@@ -21,7 +21,7 @@ class MainActivityViewModel @Inject constructor(
                 getMessages()
                 retrieveMessages()
             }
-            is SendMessageIntention -> {
+            is PostMessageIntention -> {
                 sendMessage(intention.message)
                 saveMessage(intention.message)
             }
@@ -30,15 +30,14 @@ class MainActivityViewModel @Inject constructor(
         }
     }
 
-    override fun initViewState(): MainViewState { // todo is there a better generic way? a factory?
-        return MainViewState.init()
-    }
+    // todo is there a better generic way? a factory?
+    override fun initViewState(): MainViewState = MainViewState.init()
 
     private fun retrieveMessages() {
         disposables += apiInterface.retrieveMessages("Bob")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe ({ response ->
+                .subscribe({ response ->
                     state.postValue(getState().copy(messages = response.messages))
                 }, {
                     Timber.e(it)

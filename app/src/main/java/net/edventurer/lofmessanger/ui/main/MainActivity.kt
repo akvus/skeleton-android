@@ -52,7 +52,7 @@ class MainActivity : MyDaggerAppCompactActivity<MainViewState>() {
             }
         })
         btnSend.setOnClickListener {
-            viewModel?.process(SendMessageIntention(etMessage.text.toString()))
+            viewModel?.process(PostMessageIntention(etMessage.text.toString()))
             etMessage.setText("")
         }
     }
