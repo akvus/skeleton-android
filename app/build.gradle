@@ -24,9 +24,12 @@ kapt {
     generateStubs = true
 }
 
-ext.retrofitVersion = "2.3.0"
-ext.gsonVersion = "2.8.2"
-ext.daggerVersion = '2.14.1'
+ext {
+    retrofitVersion = "2.3.0"
+    gsonVersion = "2.8.2"
+    daggerVersion = '2.14.1'
+    roomVersion = '1.0.0'
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -56,8 +59,9 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:4.6.0'
 
     // room
-    implementation "android.arch.persistence.room:runtime:1.0.0"
-    kapt "android.arch.persistence.room:compiler:1.0.0"
+    implementation "android.arch.persistence.room:runtime:$roomVersion"
+    implementation "android.arch.persistence.room:rxjava2:$roomVersion"
+    kapt "android.arch.persistence.room:compiler:$roomVersion"
 
     // arch components
     implementation "android.arch.lifecycle:extensions:1.1.0"

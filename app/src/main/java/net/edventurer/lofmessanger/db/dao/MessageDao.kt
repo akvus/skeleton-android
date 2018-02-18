@@ -5,6 +5,7 @@ import android.arch.persistence.room.Delete
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy.REPLACE
 import android.arch.persistence.room.Query
+import io.reactivex.Flowable
 import net.edventurer.lofmessanger.db.data.Message
 
 /**
@@ -13,7 +14,7 @@ import net.edventurer.lofmessanger.db.data.Message
 @Dao
 interface MessageDao {
     @Query("select * from message")
-    fun getAllMessages() : List<Message>
+    fun getAllMessages() : Flowable<List<Message>>
 
     @Insert(onConflict = REPLACE)
     fun insertMessage(message: Message)
