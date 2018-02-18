@@ -25,12 +25,7 @@ class MainActivityViewModel @Inject constructor(
                 retrieveMessages()
                 getAllMessages()
             }
-            is PostMessageIntention -> {
-                if (intention.message.isNotEmpty()) {
-                    sendMessage(intention.message)
-                    saveMessage(intention.message)
-                }
-            }
+            is PostMessageIntention -> doOnPostMessage(intention.message)
             is DeleteMessageIntention -> deleteMessage(intention.id)
             RetrieveMessages -> retrieveMessages()
         }
@@ -38,6 +33,18 @@ class MainActivityViewModel @Inject constructor(
 
     // todo is there a better generic way? a factory?
     override fun initViewState(): MainViewState = MainViewState.init()
+
+    private fun doOnPostMessage(message: String) {
+        if (message.isNotEmpty()) {
+            // todo get nickname from settings/sharedPrefs helper
+            with(LofMessage(message = message, nickname = "Bob")) {
+                sendMessage(this)
+                saveMessage(this)
+                // todo is it better to display the message after its saved or sent instead?
+                state.value = getState().copy(messagesToAdd = listOf(this))
+            }
+        }
+    }
 
     private fun retrieveMessages() {
         disposables += apiInterface.retrieveMessages("Bob")
@@ -58,9 +65,9 @@ class MainActivityViewModel @Inject constructor(
                 }, Timber::e)
     }
 
-    private fun saveMessage(message: String) {
+    private fun saveMessage(message: LofMessage) {
         disposables += Observable.fromCallable {
-            messageDao.insertMessage(LofMessage(message = message, nickname = "Bob"))
+            messageDao.insertMessage(message)
         }.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
@@ -68,8 +75,8 @@ class MainActivityViewModel @Inject constructor(
                 }
     }
 
-    private fun sendMessage(message: String) {
-        disposables += apiInterface.sendMessage("Bob", message)
+    private fun sendMessage(message: LofMessage) {
+        disposables += apiInterface.sendMessage(message.nickname, message.message)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
