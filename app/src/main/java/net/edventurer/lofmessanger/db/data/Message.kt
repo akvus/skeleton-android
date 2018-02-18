@@ -12,11 +12,11 @@ import java.util.*
 @Entity(tableName = "message")
 data class Message(
         @ColumnInfo(name = "message")
-        @SerializedName("message") val message: String,
+        @SerializedName("message") var message: String,
         @ColumnInfo(name = "date")
-        @SerializedName("date") val date: Date,
+        @SerializedName("date") var date: Date,
         @ColumnInfo(name = "nickname")
-        @SerializedName("nickname") val nickname: String) {
+        @SerializedName("nickname") var nickname: String) {
     @ColumnInfo(name = "id")
     @SerializedName("id")
     @PrimaryKey(autoGenerate = true) var id: Long = 0

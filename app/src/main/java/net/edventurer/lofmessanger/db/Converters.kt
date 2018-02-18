@@ -1,28 +1,24 @@
 package net.edventurer.lofmessanger.db
 
 import android.arch.persistence.room.TypeConverter
-import java.time.OffsetDateTime
-import java.time.format.DateTimeFormatter
+import java.util.*
+
 
 /**
  * Created by akvus on 2/18/18.
+ *
+ * todo use https://medium.com/@chrisbanes/room-time-2b4cf9672b98 back ported OffsetDateTime
  */
-object MyTypeConverter {
-    private val formatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME
-
+object Converters {
     @TypeConverter
     @JvmStatic
-    fun toOffsetDateTime(value: String?): OffsetDateTime? {
-        return value?.let {
-            return formatter.parse(value, OffsetDateTime::from)
-        }
+    fun fromTimestamp(value: Long?): Date? {
+        return if (value == null) null else Date(value)
     }
 
     @TypeConverter
     @JvmStatic
-    fun fromOffsetDateTime(date: OffsetDateTime?): String? {
-        return date?.let {
-            it.format(formatter)
-        }
+    fun dateToTimestamp(date: Date?): Long? {
+        return date?.time
     }
 }
