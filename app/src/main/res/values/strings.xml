@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">LofMessanger</string>
-    <string name="message">Message</string>
+    <string name="lofMessage">Message</string>
     <string name="send">Send</string>
 </resources>

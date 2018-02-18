@@ -58,8 +58,8 @@ class MainActivity : MyDaggerAppCompactActivity<MainViewState>() {
     }
 
     override fun render(viewState: MainViewState) {
-        if (viewState.messages != null) {
-            adapter?.replaceMessages(viewState.messages)
+        if (viewState.lofMessages != null) {
+            adapter?.replaceMessages(viewState.lofMessages)
         }
     }
 }

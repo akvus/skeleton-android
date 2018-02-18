@@ -6,13 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import net.edventurer.lofmessanger.R
-import net.edventurer.lofmessanger.db.data.Message
+import net.edventurer.lofmessanger.db.data.LofMessage
 
 /**
  * Created by akvus on 2/17/18.
  */
 class MessagesAdapter: RecyclerView.Adapter<MessagesAdapter.ViewHolder>() {
-    private val messages: MutableList<Message> = mutableListOf()
+    private val lofMessages: MutableList<LofMessage> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context)
@@ -20,24 +20,24 @@ class MessagesAdapter: RecyclerView.Adapter<MessagesAdapter.ViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return messages.count()
+        return lofMessages.count()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.tvMessage.text = messages[position].message
+        holder.tvMessage.text = lofMessages[position].message
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvMessage = view.findViewById<TextView>(R.id.tvMessage)
     }
 
-    fun addMessages(newMessages: List<Message>) {
-        messages.addAll(newMessages)
+    fun addMessages(newLofMessages: List<LofMessage>) {
+        lofMessages.addAll(newLofMessages)
         notifyDataSetChanged()
     }
 
-    fun replaceMessages(newMessages: List<Message>) {
-        messages.clear()
-        addMessages(newMessages)
+    fun replaceMessages(newLofMessages: List<LofMessage>) {
+        lofMessages.clear()
+        addMessages(newLofMessages)
     }
 }

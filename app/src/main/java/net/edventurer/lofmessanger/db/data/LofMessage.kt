@@ -10,7 +10,7 @@ import java.util.*
  * Created by akvus on 2/17/18.
  */
 @Entity(tableName = "message")
-data class Message(
+data class LofMessage(
         @ColumnInfo(name = "message")
         @SerializedName("message") var message: String,
         @ColumnInfo(name = "date")

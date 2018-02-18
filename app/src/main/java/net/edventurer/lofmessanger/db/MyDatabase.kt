@@ -7,12 +7,12 @@ import android.arch.persistence.room.TypeConverters
 import android.content.Context
 
 import net.edventurer.lofmessanger.db.dao.MessageDao
-import net.edventurer.lofmessanger.db.data.Message
+import net.edventurer.lofmessanger.db.data.LofMessage
 
 /**
  * Created by akvus on 2/18/18.
  */
-@Database(entities = [Message::class], version = MyDatabase.VERSION, exportSchema = false)
+@Database(entities = [LofMessage::class], version = MyDatabase.VERSION, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class MyDatabase : RoomDatabase() {
     abstract fun messageDao(): MessageDao
