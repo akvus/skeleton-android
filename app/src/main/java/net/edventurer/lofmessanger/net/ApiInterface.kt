@@ -11,7 +11,7 @@ import retrofit2.http.*
 interface ApiInterface {
     @FormUrlEncoded
     @POST("message")
-    fun postMessage(@Field("id") id: String, @Field("message") message: String)
+    fun sendMessage(@Field("nickname") nickname: String, @Field("message") message: String)
             : Observable<NetworkResponse>
 
     @GET("message/{nickname}")

@@ -39,21 +39,24 @@ class MainActivityViewModel @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response ->
                     state.postValue(getState().copy(messages = response.messages))
-                }, {
-                    Timber.e(it)
-                })
+                }, Timber::e)
     }
 
     private fun saveMessage(message: String) {
         // todo room
     }
 
-    private fun getMessages() {
-        // todo room
+    private fun sendMessage(message: String) {
+        disposables += apiInterface.sendMessage("Bob", message)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    // todo snack
+                }, Timber::e)
     }
 
-    private fun sendMessage(message: String) {
-        // todo retrofit
+    private fun getMessages() {
+        // todo room
     }
 
     private fun deleteMessage(id: String) {
