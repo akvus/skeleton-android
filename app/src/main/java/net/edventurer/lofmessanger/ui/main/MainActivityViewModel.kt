@@ -22,8 +22,8 @@ class MainActivityViewModel @Inject constructor(
     override fun process(intention: MainIntention) {
         when (intention) {
             InitIntention -> {
-                getMessages()
                 retrieveMessages()
+                getAllMessages()
             }
             is PostMessageIntention -> {
                 if (intention.message.isNotEmpty()) {
@@ -43,13 +43,18 @@ class MainActivityViewModel @Inject constructor(
         disposables += apiInterface.retrieveMessages("Bob")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ response ->
-                    state.postValue(getState().copy(lofMessages = response.lofMessages))
+                .subscribe({
+                    state.value = getState().copy(messagesToAdd = it.lofMessages)
                 }, Timber::e)
     }
 
-    private fun getMessages() {
-        // todo room
+    private fun getAllMessages() {
+        disposables += messageDao.getAllMessages()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    state.value = getState().copy(messagesToAdd = it)
+                }, Timber::e)
     }
 
     private fun saveMessage(message: String) {

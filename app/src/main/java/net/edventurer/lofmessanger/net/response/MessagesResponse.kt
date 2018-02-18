@@ -7,6 +7,6 @@ import net.edventurer.lofmessanger.db.data.LofMessage
  * Created by akvus on 2/17/18.
  */
 class MessagesResponse : NetworkResponse() {
-    @SerializedName("lofMessages")
+    @SerializedName("messagesToAdd")
     val lofMessages: List<LofMessage> = listOf()
 }

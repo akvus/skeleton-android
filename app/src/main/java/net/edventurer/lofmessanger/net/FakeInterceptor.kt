@@ -12,7 +12,7 @@ class FakeInterceptor : Interceptor {
         val responseString = if (method == "POST") {
             "{}"
         } else {
-            "{\"lofMessages\":[{\"message\":\"Some message\", \"nickname\":\"Ann\"}, {\"message\":\"Some message\", \"nickname\":\"Ann\"}]}"
+            "{\"messagesToAdd\":[{\"message\":\"Some message\", \"nickname\":\"Ann\"}, {\"message\":\"Some message\", \"nickname\":\"Ann\"}]}"
         }
 
         return Response.Builder()

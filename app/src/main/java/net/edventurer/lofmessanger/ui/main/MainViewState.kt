@@ -6,7 +6,7 @@ import net.edventurer.lofmessanger.db.data.LofMessage
 /**
  * Created by akvus on 2/17/18.
  */
-data class MainViewState(val lofMessages: List<LofMessage>?): ViewState {
+data class MainViewState(val messagesToAdd: List<LofMessage>?): ViewState {
     companion object {
         fun init(): MainViewState {
             return MainViewState(listOf())
