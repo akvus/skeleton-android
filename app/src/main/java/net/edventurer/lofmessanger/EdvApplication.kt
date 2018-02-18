@@ -12,8 +12,7 @@ import timber.log.Timber
  * - how to not re-render unchanged data
  * - how to handle once-of events, i.e. Toast, Snackbar
  * --
- * - setup room
- * - implement app, fake server
+ * - implement settings
  * (fork: FCM, real server)
  */
 class EdvApplication: DaggerApplication() {
