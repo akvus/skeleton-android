@@ -47,7 +47,7 @@ class MainActivity : MyDaggerAppCompactActivity<MainViewState>() {
         rvMessages.adapter = adapter
         rvMessages.layoutManager = LinearLayoutManager(this)
 
-        etMessage.setOnKeyListener({ v, keyCode, event ->
+        etMessage.setOnKeyListener({ _, keyCode, event ->
             if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
                 btnSend.performClick()
                 true

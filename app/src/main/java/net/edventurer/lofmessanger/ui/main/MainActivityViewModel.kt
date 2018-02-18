@@ -51,6 +51,7 @@ class MainActivityViewModel @Inject constructor(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
+                    it.lofMessages.forEach { message -> saveMessage(message)}
                     state.value = getState().copy(messagesToAdd = it.lofMessages)
                 }, Timber::e)
     }
