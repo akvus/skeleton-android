@@ -48,6 +48,10 @@ class MainActivityViewModel @Inject constructor(
                 }, Timber::e)
     }
 
+    private fun getMessages() {
+        // todo room
+    }
+
     private fun saveMessage(message: String) {
         disposables += Observable.fromCallable {
             messageDao.insertMessage(LofMessage(message = message, nickname = "Bob"))
@@ -65,10 +69,6 @@ class MainActivityViewModel @Inject constructor(
                 .subscribe({
                     // todo snack
                 }, Timber::e)
-    }
-
-    private fun getMessages() {
-        // todo room
     }
 
     private fun deleteMessage(id: String) {

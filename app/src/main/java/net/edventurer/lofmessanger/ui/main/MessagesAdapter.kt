@@ -24,10 +24,12 @@ class MessagesAdapter: RecyclerView.Adapter<MessagesAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.tvNickname.text = lofMessages[position].nickname
         holder.tvMessage.text = lofMessages[position].message
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val tvNickname = view.findViewById<TextView>(R.id.tvNickname)
         val tvMessage = view.findViewById<TextView>(R.id.tvMessage)
     }
 
