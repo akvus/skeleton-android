@@ -12,11 +12,11 @@ import java.util.*
 @Entity(tableName = "message")
 data class LofMessage(
         @ColumnInfo(name = "message")
-        @SerializedName("message") var message: String,
+        @SerializedName("message") var message: String = "",
         @ColumnInfo(name = "date")
-        @SerializedName("date") var date: Date,
+        @SerializedName("date") var date: Date = Date(),
         @ColumnInfo(name = "nickname")
-        @SerializedName("nickname") var nickname: String) {
+        @SerializedName("nickname") var nickname: String = "") {
     @ColumnInfo(name = "id")
     @SerializedName("id")
     @PrimaryKey(autoGenerate = true) var id: Long = 0

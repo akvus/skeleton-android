@@ -1,9 +1,11 @@
 package net.edventurer.lofmessanger.ui.main
 
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import net.edventurer.lofmessanger.arch.MyViewModel
 import net.edventurer.lofmessanger.db.dao.MessageDao
+import net.edventurer.lofmessanger.db.data.LofMessage
 import net.edventurer.lofmessanger.ext.plus
 import net.edventurer.lofmessanger.net.ApiInterface
 import timber.log.Timber
@@ -24,8 +26,10 @@ class MainActivityViewModel @Inject constructor(
                 retrieveMessages()
             }
             is PostMessageIntention -> {
-                sendMessage(intention.message)
-                saveMessage(intention.message)
+                if (intention.message.isNotEmpty()) {
+                    sendMessage(intention.message)
+                    saveMessage(intention.message)
+                }
             }
             is DeleteMessageIntention -> deleteMessage(intention.id)
             RetrieveMessages -> retrieveMessages()
@@ -45,6 +49,13 @@ class MainActivityViewModel @Inject constructor(
     }
 
     private fun saveMessage(message: String) {
+        disposables += Observable.fromCallable {
+            messageDao.insertMessage(LofMessage(message = message, nickname = "Bob"))
+        }.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    Timber.d("Message $message saved.")
+                }
     }
 
     private fun sendMessage(message: String) {
