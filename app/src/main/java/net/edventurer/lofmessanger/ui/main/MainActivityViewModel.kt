@@ -50,6 +50,7 @@ class MainActivityViewModel @Inject constructor(
 
     private fun getAllMessages() {
         disposables += messageDao.getAllMessages()
+                .take(1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
