@@ -1,7 +1,7 @@
 package net.edventurer.lofmessanger.net.response
 
 import com.google.gson.annotations.SerializedName
-import net.edventurer.lofmessanger.db.Message
+import net.edventurer.lofmessanger.db.data.Message
 
 /**
  * Created by akvus on 2/17/18.

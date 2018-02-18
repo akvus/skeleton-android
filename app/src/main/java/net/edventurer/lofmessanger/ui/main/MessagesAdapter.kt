@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import net.edventurer.lofmessanger.R
-import net.edventurer.lofmessanger.db.Message
+import net.edventurer.lofmessanger.db.data.Message
 
 /**
  * Created by akvus on 2/17/18.

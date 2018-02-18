@@ -1,7 +1,9 @@
 package net.edventurer.lofmessanger.di
 
+import android.app.Application
 import dagger.Module
 import dagger.Provides
+import net.edventurer.lofmessanger.db.MyDatabase
 import net.edventurer.lofmessanger.net.ApiClient
 import net.edventurer.lofmessanger.net.ApiInterface
 
@@ -12,4 +14,10 @@ import net.edventurer.lofmessanger.net.ApiInterface
 class HelpersModule {
     @Provides
     fun apiInterface() : ApiInterface = ApiClient.service
+
+    @Provides
+    fun database(context: Application) = MyDatabase.create(context)
+
+    @Provides
+    fun messageDeo(myDatabase: MyDatabase) = myDatabase.messageDao()
 }
