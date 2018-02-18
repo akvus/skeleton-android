@@ -10,6 +10,7 @@ import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
 import net.edventurer.lofmessanger.R
 import net.edventurer.lofmessanger.arch.MyDaggerAppCompactActivity
+import net.edventurer.lofmessanger.db.data.LofMessage
 import javax.inject.Inject
 
 class MainActivity : MyDaggerAppCompactActivity<MainViewState>() {
@@ -40,6 +41,9 @@ class MainActivity : MyDaggerAppCompactActivity<MainViewState>() {
 
     private fun setUpView() {
         adapter = MessagesAdapter()
+        adapter?.onDelete?.observe(this, Observer<LofMessage> {
+            it?.let { viewModel?.process(DeleteMessageIntention(it)) }
+        })
         rvMessages.adapter = adapter
         rvMessages.layoutManager = LinearLayoutManager(this)
 

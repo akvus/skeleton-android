@@ -26,7 +26,7 @@ class MainActivityViewModel @Inject constructor(
                 getAllMessages()
             }
             is PostMessageIntention -> doOnPostMessage(intention.message)
-            is DeleteMessageIntention -> deleteMessage(intention.id)
+            is DeleteMessageIntention -> deleteMessage(intention.message)
             RetrieveMessages -> retrieveMessages()
         }
     }
@@ -84,7 +84,12 @@ class MainActivityViewModel @Inject constructor(
                 }, Timber::e)
     }
 
-    private fun deleteMessage(id: String) {
-        // todo retrofit
+    private fun deleteMessage(message: LofMessage) {
+        disposables += Observable.fromCallable { messageDao.deleteMessage(message) }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    // todo snack
+                }, Timber::e)
     }
 }
