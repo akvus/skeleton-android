@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
 import android.view.KeyEvent
 import dagger.android.AndroidInjection
@@ -11,6 +12,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import net.edventurer.lofmessanger.R
 import net.edventurer.lofmessanger.arch.MyDaggerAppCompactActivity
 import net.edventurer.lofmessanger.db.data.LofMessage
+import net.edventurer.lofmessanger.ext.snack
 import javax.inject.Inject
 
 class MainActivity : MyDaggerAppCompactActivity<MainViewState>() {
@@ -36,6 +38,9 @@ class MainActivity : MyDaggerAppCompactActivity<MainViewState>() {
                 .get(MainActivityViewModel::class.java);
         viewModel?.state?.observe(this, Observer<MainViewState> {
             it?.let { render(it) }
+        })
+        viewModel?.snack?.observe(this, Observer {
+            it?.let { snack(it, Snackbar.LENGTH_LONG) }
         })
     }
 

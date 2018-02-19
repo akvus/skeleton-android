@@ -3,6 +3,7 @@ package net.edventurer.lofmessanger.ui.main
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import net.edventurer.lofmessanger.R
 import net.edventurer.lofmessanger.arch.MyViewModel
 import net.edventurer.lofmessanger.db.dao.MessageDao
 import net.edventurer.lofmessanger.db.data.LofMessage
@@ -81,7 +82,7 @@ class MainActivityViewModel @Inject constructor(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    // todo snack
+                    snack.value = R.string.message_sent
                 }, Timber::e)
     }
 
@@ -90,7 +91,7 @@ class MainActivityViewModel @Inject constructor(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    // todo snack
+                    snack.value = R.string.message_deleted
                 }, Timber::e)
     }
 }

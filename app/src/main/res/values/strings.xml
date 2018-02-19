@@ -2,4 +2,6 @@
     <string name="app_name">LofMessanger</string>
     <string name="lofMessage">Message</string>
     <string name="send">Send</string>
+    <string name="message_sent">Message sent</string>
+    <string name="message_deleted">Message deleted</string>
 </resources>
