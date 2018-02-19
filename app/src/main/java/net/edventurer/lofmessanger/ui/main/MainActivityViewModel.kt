@@ -32,7 +32,7 @@ class MainActivityViewModel @Inject constructor(
     }
 
     // todo is there a better generic way? a factory?
-    override fun initViewState(): MainViewState = MainViewState.init()
+    override fun initViewState() = MainViewState.init()
 
     private fun doOnPostMessage(message: String) {
         if (message.isNotEmpty()) {
@@ -40,13 +40,13 @@ class MainActivityViewModel @Inject constructor(
             with(LofMessage(message = message, nickname = "Bob")) {
                 sendMessage(this)
                 saveMessage(this)
-                // todo is it better to display the message after its saved or sent instead?
                 state.value = getState().copy(messagesToAdd = listOf(this))
             }
         }
     }
 
     private fun retrieveMessages() {
+        // todo get nickname from settings/sharedPrefs helper
         disposables += apiInterface.retrieveMessages("Bob")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

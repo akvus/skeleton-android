@@ -14,6 +14,10 @@ abstract class MyViewModel<in I : Intention, VS: ViewState> : ViewModel() {
         MutableLiveData<VS>()
     }
 
+    val snack: SingleLiveEvent<Int> by lazy {
+        SingleLiveEvent<Int>()
+    }
+
     override fun onCleared() {
         super.onCleared()
         disposables.clear()
