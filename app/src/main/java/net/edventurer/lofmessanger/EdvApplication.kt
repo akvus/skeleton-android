@@ -11,7 +11,7 @@ import timber.log.Timber
  * todo
  * - how to not re-render unchanged data
  * --
- * - implement settings
+ * - implement preferences screen, preferences helper, encryption of the messages and auth of Bob, Alice to server
  * (fork: FCM, real server)
  */
 class EdvApplication: DaggerApplication() {
