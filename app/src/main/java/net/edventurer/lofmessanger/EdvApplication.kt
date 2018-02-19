@@ -10,7 +10,6 @@ import timber.log.Timber
  *
  * todo
  * - how to not re-render unchanged data
- * - how to handle once-of events, i.e. Toast, Snackbar
  * --
  * - implement settings
  * (fork: FCM, real server)
