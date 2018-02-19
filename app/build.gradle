@@ -4,11 +4,11 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     defaultConfig {
         applicationId "net.edventurer.lofmessanger"
         minSdkVersion 21
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -30,7 +30,7 @@ ext {
     gsonVersion = "2.8.2"
     daggerVersion = '2.14.1'
     roomVersion = '1.0.0'
-    supportVersion = '26.1.0'
+    supportVersion = '27.0.2'
 }
 
 dependencies {
