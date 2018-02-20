@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="@string/preferences">
+
+        <EditTextPreference
+            android:key="nickPreference"
+            android:title="@string/preference_nick_title"
+            android:summary="@string/preference_nick_summary"
+            android:dialogTitle="@string/preference_nick_title" />
+
+        <EditTextPreference
+            android:key="urlPreference"
+            android:title="@string/preference_url_title"
+            android:summary="@string/preference_url_summary"
+            android:dialogTitle="@string/preference_url_title" />
+
+    </PreferenceCategory>
+</PreferenceScreen>
