@@ -25,57 +25,48 @@ kapt {
     generateStubs = true
 }
 
-ext {
-    retrofitVersion = "2.3.0"
-    gsonVersion = "2.8.2"
-    daggerVersion = '2.14.1'
-    roomVersion = '1.0.0'
-    supportVersion = '27.0.2'
-}
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:appcompat-v7:$supportVersion"
-    implementation "com.android.support:recyclerview-v7:$supportVersion"
-    implementation "com.android.support:design:$supportVersion"
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation libs.android.appcompact
+    implementation libs.android.design
+    implementation libs.android.recyclerview
+    implementation libs.android.constraint
 
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
+    // rx
+    implementation libs.rxandroid
+    implementation libs.rxjava
 
     // retrofit
-    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    implementation libs.retrofit.core
+    implementation libs.retrofit.gson
+    implementation libs.retrofit.rxjava2
+    implementation libs.retrofit.loggingInterceptor
 
-    // gson
-    implementation "com.google.code.gson:gson:$gsonVersion"
+    implementation libs.gson
 
     // dagger
-    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
-    implementation "com.google.dagger:dagger:$daggerVersion"
-    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
-    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
+    implementation libs.dagger.core
+    kapt libs.dagger.compiler
+    implementation libs.dagger.android
+    kapt libs.dagger.androidCompiler
 
-    // timber
-    implementation 'com.jakewharton.timber:timber:4.6.0'
+    implementation libs.timber
 
     // room
-    implementation "android.arch.persistence.room:runtime:$roomVersion"
-    implementation "android.arch.persistence.room:rxjava2:$roomVersion"
-    kapt "android.arch.persistence.room:compiler:$roomVersion"
+    implementation libs.room.runtime
+    implementation libs.room.rx2
+    kapt libs.room.compiler
 
     // arch components
-    implementation "android.arch.lifecycle:extensions:1.1.0"
+    implementation libs.arch.extensions
 
     // kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation libs.kotlin
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation testLibs.junit
 
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestImplementation testAndroidLibs.runner
+    androidTestImplementation testAndroidLibs.espresso.core
 }
 repositories {
     mavenCentral()

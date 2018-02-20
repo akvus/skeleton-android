@@ -23,6 +23,78 @@ allprojects {
     }
 }
 
+
+
+ext {
+    androidApisVersion = '26.+'
+    daggerVersion = '2.14.1'
+    playServicesVersion = "11.8.0"
+    retrofitVersion = "2.3.0"
+    gsonVersion = "2.8.2"
+    roboElectricVersion = '3.6.1'
+    espressoVersion = '3.0.1'
+    roomVersion = '1.0.0'
+
+    libs = [
+            android  : [
+                    appcompact   : "com.android.support:appcompat-v7:$androidApisVersion",
+                    design       : "com.android.support:design:$androidApisVersion",
+                    supportV4    : "com.android.support:support-v4:$androidApisVersion",
+                    recyclerview : "com.android.support:recyclerview-v7:$androidApisVersion",
+                    cardview     : "com.android.support:cardview-v7:$androidApisVersion",
+                    preferenceV7 : "com.android.support:preference-v7:$androidApisVersion",
+                    preferenceV14: "com.android.support:preference-v14:$androidApisVersion",
+                    constraint   : 'com.android.support.constraint:constraint-layout:1.0.2',
+                    multidex     : 'com.android.support:multidex:1.0.2'
+            ],
+            kotlin   : "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version",
+            room     : [
+                    runtime : "android.arch.persistence.room:runtime:$roomVersion",
+                    rx2     : "android.arch.persistence.room:rxjava2:$roomVersion",
+                    compiler: "android.arch.persistence.room:compiler:$roomVersion"
+            ],
+            arch     : [
+                    extensions: "android.arch.lifecycle:extensions:1.1.0"
+            ],
+            gson     : "com.google.code.gson:gson:$gsonVersion",
+            rxandroid: 'io.reactivex.rxjava2:rxandroid:2.0.2',
+            rxjava   : 'io.reactivex.rxjava2:rxjava:2.1.9',
+            dagger   : [
+                    compiler       : "com.google.dagger:dagger-compiler:$daggerVersion",
+                    core           : "com.google.dagger:dagger:$daggerVersion",
+                    androidCompiler: "com.google.dagger:dagger-android-processor:$daggerVersion",
+                    android        : "com.google.dagger:dagger-android-support:$daggerVersion"
+            ],
+            play     : [
+                    maps  : "com.google.android.gms:play-services-maps:$playServicesVersion",
+                    places: "com.google.android.gms:play-services-places:$playServicesVersion",
+                    ads   : "com.google.android.gms:play-services-ads:$playServicesVersion"
+            ],
+            timber   : 'com.jakewharton.timber:timber:4.6.0',
+            retrofit : [
+                    core              : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+                    gson              : "com.squareup.retrofit2:converter-gson:$retrofitVersion",
+                    rxjava2           : "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
+                    loggingInterceptor: 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+            ]
+    ]
+    testLibs = [
+            junit          : 'junit:junit:4.12',
+            mockito        : 'org.mockito:mockito-core:2.12.0',
+            hamcrest       : 'org.hamcrest:hamcrest-library:1.3',
+            robolectric    : "org.robolectric:robolectric:$roboElectricVersion",
+            rules          : 'com.android.support.test:rules:1.0.1',
+            rxSchedulerRule: 'com.github.Plastix.RxSchedulerRule:rx2:1.0.2',
+            mockitoKotlin  : "com.nhaarman:mockito-kotlin:1.5.0"
+    ]
+    testAndroidLibs = [
+            runner  : 'com.android.support.test:runner:1.0.1',
+            espresso: [
+                    core: "com.android.support.test.espresso:espresso-core:$espressoVersion"
+            ]
+    ]
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
