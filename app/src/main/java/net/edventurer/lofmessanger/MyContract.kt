@@ -3,6 +3,6 @@ package net.edventurer.lofmessanger
 /**
  * Created by akvus on 2/20/18.
  */
-object EdvContract {
+object MyContract {
     const val sharedPreferencesName = "default-preferences"
 }

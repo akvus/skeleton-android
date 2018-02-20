@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import dagger.Module
 import dagger.Provides
-import net.edventurer.lofmessanger.EdvContract
+import net.edventurer.lofmessanger.MyContract
 import net.edventurer.lofmessanger.db.MyDatabase
 import net.edventurer.lofmessanger.net.ApiClient
 import net.edventurer.lofmessanger.net.ApiInterface
@@ -26,5 +26,5 @@ class HelpersModule {
 
     @Provides
     fun myPreferences(context: Application)
-            = MyPreferences(context.getSharedPreferences(EdvContract.sharedPreferencesName, Context.MODE_PRIVATE))
+            = MyPreferences(context.getSharedPreferences(MyContract.sharedPreferencesName, Context.MODE_PRIVATE))
 }

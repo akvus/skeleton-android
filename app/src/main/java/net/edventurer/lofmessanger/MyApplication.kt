@@ -13,7 +13,7 @@ import timber.log.Timber
  * - encryption of the messages and auth of Bob, Alice to server
  * (fork: FCM, real server)
  */
-class EdvApplication: DaggerApplication() {
+class MyApplication : DaggerApplication() {
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
         val appComponent = DaggerAppComponent.builder().application(this).build()
         appComponent.inject(this)
