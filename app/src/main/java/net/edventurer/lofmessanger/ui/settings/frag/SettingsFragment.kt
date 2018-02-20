@@ -2,6 +2,7 @@ package net.edventurer.lofmessanger.ui.settings.frag
 
 import android.os.Bundle
 import android.preference.PreferenceFragment
+import net.edventurer.lofmessanger.EdvContract
 import net.edventurer.lofmessanger.R
 
 
@@ -11,6 +12,7 @@ import net.edventurer.lofmessanger.R
 class SettingsFragment : PreferenceFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        preferenceManager.sharedPreferencesName = EdvContract.sharedPreferencesName
         addPreferencesFromResource(R.xml.preferences)
     }
 
