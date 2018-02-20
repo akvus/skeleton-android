@@ -5,6 +5,7 @@ Simple skeleton Android app with modern dependencies set up.
 - MVVM from arch components
 - RxJava2
 - RxRetrofit
+- RxRoom
 
 Basic private messanger app implemented on top of the skeleton.
 
