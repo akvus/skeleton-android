@@ -6,6 +6,7 @@ Simple skeleton Android app with modern dependencies set up.
 - RxJava2
 - RxRetrofit
 - RxRoom
+- Timber
 
 Basic private messanger app implemented on top of the skeleton.
 
