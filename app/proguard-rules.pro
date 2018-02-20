@@ -30,3 +30,14 @@
 }
 # Ignore annotation used for build tooling.
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+# related
+-dontwarn okio.**
+-dontwarn javax.annotation.**
+
+# dagger
+-dontwarn com.google.errorprone.annotations.**
+
+# okhttp3
+-keep class com.squareup.okhttp.**
+
+-dontwarn net.edventurer.lofmessanger.MyViewModelFactory
