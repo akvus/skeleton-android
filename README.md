@@ -1,5 +1,17 @@
 # skeleton-android
-A simple app set up with all the necessary tools to start a new modern Android project.
+Simple skeleton Android app with modern dependencies set up.
+- Kotlin
+- Dagger 2 for Android
+- MVVM from arch components
+- RxJava2
+- RxRetrofit
+- RxRoom
+- Timber
 
-With a simple implementation of a private messenger between two parties. Bob saves all messages in the local database and sends them to the server. Once Alice retrieve Bob's messages from the server they are deleted on the server. Alice saves Bob's messages in hers database.
-Messages are available to download from the server only once, after what they are destroyed and the only copies are left on the two devices of Alice and Bob (until they delete them).
+Basic private messanger app implemented on top of the skeleton.
+
+It works as follows:
+- Bob sends a message. Message is saved to Bob's database and sent over to a server.
+- Alice receives the message from server, saves it to hers database.
+- After retrieved the message is deleted from server.
+- Bob and Alice has the only copies of the message until they delete them on their devices.
