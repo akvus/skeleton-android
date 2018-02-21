@@ -1,10 +1,15 @@
 <resources>
     <string name="app_name">LofMessanger</string>
-    <string name="lofMessage">Message</string>
-    <string name="send">Send</string>
-    <string name="message_sent">Message sent</string>
-    <string name="message_deleted">Message deleted</string>
+
+    <string name="hint_message">Message</string>
+
+    <string name="btn_send">Send</string>
+
     <string name="action_settings">Settings</string>
+
+    <string name="main_snack_message_sent">Message sent</string>
+    <string name="main_snack_message_deleted">Message deleted</string>
+
     <string name="preferences">Preferences</string>
     <string name="preference_nickname_title">Nickname</string>
     <string name="preference_nickname_summary">Provide your nickname</string>

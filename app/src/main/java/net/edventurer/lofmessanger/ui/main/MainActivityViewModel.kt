@@ -82,7 +82,7 @@ class MainActivityViewModel @Inject constructor(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    snack.value = R.string.message_sent
+                    snack.value = R.string.main_snack_message_sent
                 }, Timber::e)
     }
 
@@ -91,7 +91,7 @@ class MainActivityViewModel @Inject constructor(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    snack.value = R.string.message_deleted
+                    snack.value = R.string.main_snack_message_deleted
                 }, Timber::e)
     }
 }
