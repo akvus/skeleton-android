@@ -14,11 +14,10 @@ import timber.log.Timber
  * (fork: FCM, real server)
  */
 class MyApplication : DaggerApplication() {
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-        val appComponent = DaggerAppComponent.builder().application(this).build()
-        appComponent.inject(this)
-        return appComponent
-    }
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
+            DaggerAppComponent.builder().application(this).build().also {
+                it.inject(this)
+            }
 
     override fun onCreate() {
         super.onCreate()
