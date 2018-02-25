@@ -9,6 +9,7 @@ import net.edventurer.lofmessanger.db.dao.MessageDao
 import net.edventurer.lofmessanger.db.data.LofMessage
 import net.edventurer.lofmessanger.ext.plus
 import net.edventurer.lofmessanger.net.ApiInterface
+import net.edventurer.lofmessanger.tools.preferences.MyPreferences
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -17,7 +18,8 @@ import javax.inject.Inject
  */
 class MainActivityViewModel @Inject constructor(
         private val apiInterface: ApiInterface,
-        private val messageDao: MessageDao
+        private val messageDao: MessageDao,
+        private val preferences: MyPreferences
 ) : MyViewModel<MainIntention, MainViewState>() {
 
     override fun process(intention: MainIntention) {
@@ -32,13 +34,11 @@ class MainActivityViewModel @Inject constructor(
         }
     }
 
-    // todo is there a better generic way? a factory?
     override fun initViewState() = MainViewState.init()
 
     private fun doOnPostMessage(message: String) {
         if (message.isNotEmpty()) {
-            // todo get nickname from settings/sharedPrefs helper
-            with(LofMessage(message = message, nickname = "Bob")) {
+            with(LofMessage(message = message, nickname = preferences.getNickname())) {
                 sendMessage(this)
                 saveMessage(this)
                 state.value = getState().copy(messagesToAdd = listOf(this))
@@ -47,8 +47,7 @@ class MainActivityViewModel @Inject constructor(
     }
 
     private fun retrieveMessages() {
-        // todo get nickname from settings/sharedPrefs helper
-        disposables += apiInterface.retrieveMessages("Bob")
+        disposables += apiInterface.retrieveMessages(preferences.getNickname())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({

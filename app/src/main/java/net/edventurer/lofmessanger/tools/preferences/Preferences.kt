@@ -6,7 +6,7 @@ import android.content.SharedPreferences
  * Created by akvus on 2/20/18.
  */
 abstract class Preferences(private val sharedPreferences: SharedPreferences) {
-    fun getString(key: String, default: String = ""): String? {
+    fun getString(key: String, default: String = ""): String {
         return sharedPreferences.getString(key, default)
     }
 

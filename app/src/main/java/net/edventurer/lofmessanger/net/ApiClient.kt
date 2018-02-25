@@ -2,6 +2,7 @@ package net.edventurer.lofmessanger.net
 
 import io.reactivex.Observable
 import net.edventurer.lofmessanger.BuildConfig
+import net.edventurer.lofmessanger.tools.preferences.MyPreferences
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.ResponseBody
@@ -13,7 +14,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 /**
  * Created by akvus on 2/17/18.
  */
-object ApiClient {
+class ApiClient(
+        private val preferences: MyPreferences
+) {
     private val okHttpClient: OkHttpClient by lazy {
         val httpClientBuilder = OkHttpClient.Builder()
 
@@ -28,7 +31,7 @@ object ApiClient {
 
     val service: ApiInterface by lazy {
         Retrofit.Builder()
-                .baseUrl("http://api.example.com/v1/")
+                .baseUrl(preferences.getApiUrl())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

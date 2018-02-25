@@ -16,9 +16,6 @@ import net.edventurer.lofmessanger.tools.preferences.MyPreferences
 @Module
 class HelpersModule {
     @Provides
-    fun apiInterface() : ApiInterface = ApiClient.service
-
-    @Provides
     fun database(context: Application) = MyDatabase.create(context)
 
     @Provides
@@ -27,4 +24,10 @@ class HelpersModule {
     @Provides
     fun myPreferences(context: Application)
             = MyPreferences(context.getSharedPreferences(MyContract.sharedPreferencesName, Context.MODE_PRIVATE))
+
+    @Provides
+    fun apiClient(preferences: MyPreferences) : ApiClient = ApiClient(preferences)
+
+    @Provides
+    fun apiInterface(apiClient: ApiClient) : ApiInterface = apiClient.service
 }

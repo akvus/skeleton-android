@@ -5,17 +5,19 @@ import android.content.SharedPreferences
 /**
  * Created by akvus on 2/20/18.
  */
-class MyPreferences(sharedPreferences: SharedPreferences): Preferences(sharedPreferences) {
-    fun getNick(): String {
-        return getString(nicknameKey) ?: ""
+class MyPreferences(sharedPreferences: SharedPreferences) : Preferences(sharedPreferences) {
+    fun getNickname(): String {
+        return getString(nicknameKey)
     }
 
-    fun getUrl(): String {
-        return getString(urlKey) ?: ""
+    fun getApiUrl(): String {
+        return if (getString(apiUrlKey).isEmpty()) defaultApiUrl else getString(apiUrlKey)
     }
 
     companion object {
-        const val nicknameKey = "nick"
-        const val urlKey = "url"
+        const val nicknameKey = "nickname"
+        const val apiUrlKey = "apiUrl"
+
+        const val defaultApiUrl = "http://api.example.com/v1/"
     }
 }
