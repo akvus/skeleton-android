@@ -36,4 +36,3 @@ if ($action == 'add') {
     echo json_encode(array('error' => 0, 'messages' => $resultMessages));
 }
 file_put_contents($jsonFileName, json_encode($messagesJson));
-exit;
