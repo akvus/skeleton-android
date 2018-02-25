@@ -9,7 +9,7 @@ import timber.log.Timber
  * Created by akvus on 2/17/18.
  *
  * todo
- * (fork: FCM, message encryption, notifications, token setting)
+ * (fork: FCM, message encryption, notifications, apply timestamp)
  */
 class MyApplication : DaggerApplication() {
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> =

@@ -14,9 +14,14 @@ class MyPreferences(sharedPreferences: SharedPreferences) : Preferences(sharedPr
         return if (getString(apiUrlKey).isEmpty()) defaultApiUrl else getString(apiUrlKey)
     }
 
+    fun getTokenPreference(): String {
+        return getString(tokenKey)
+    }
+
     companion object {
         const val nicknameKey = "nickPreference"
         const val apiUrlKey = "urlPreference"
+        const val tokenKey = "tokenPreference"
 
         const val defaultNickName = "User"
         const val defaultApiUrl = "http://api.example.com/v1/"

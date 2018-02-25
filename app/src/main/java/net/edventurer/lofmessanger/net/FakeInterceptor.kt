@@ -7,12 +7,9 @@ import okhttp3.*
  */
 class FakeInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
-        val method = chain.request().method()
-        val responseString = if (method == "POST") {
-            "{}"
-        } else {
-            "{\"messagesToAdd\":[{\"message\":\"Some message\", \"nickname\":\"Ann\"}, {\"message\":\"Some message\", \"nickname\":\"Ann\"}]}"
-        }
+        val responseString =
+                "{\"error\": 0, \"messages\":[{\"message\":\"Some message\", \"nickname\":\"Alice\"}, " +
+                        "{\"message\":\"Some message2\", \"nickname\":\"Alice\"}]}"
 
         return Response.Builder()
                 .code(200)

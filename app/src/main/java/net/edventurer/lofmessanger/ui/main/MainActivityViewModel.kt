@@ -47,12 +47,12 @@ class MainActivityViewModel @Inject constructor(
     }
 
     private fun retrieveMessages() {
-        disposables += apiInterface.retrieveMessages(preferences.getNickname())
+        disposables += apiInterface.getMessages(preferences.getTokenPreference(), preferences.getNickname())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    it.lofMessages.forEach { message -> saveMessage(message)}
-                    state.value = getState().copy(messagesToAdd = it.lofMessages)
+                    it.messages.forEach { message -> saveMessage(message) }
+                    state.value = getState().copy(messagesToAdd = it.messages)
                 }, Timber::e)
     }
 
@@ -77,7 +77,8 @@ class MainActivityViewModel @Inject constructor(
     }
 
     private fun sendMessage(message: LofMessage) {
-        disposables += apiInterface.sendMessage(message.nickname, message.message)
+        disposables += apiInterface.sendMessage(preferences.getTokenPreference(),
+                message.nickname, message.message)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({

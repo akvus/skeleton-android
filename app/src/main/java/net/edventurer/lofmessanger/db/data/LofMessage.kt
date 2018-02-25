@@ -13,8 +13,10 @@ import java.util.*
 data class LofMessage(
         @ColumnInfo(name = "message")
         @SerializedName("message") var message: String = "",
-        @ColumnInfo(name = "date")
-        @SerializedName("date") var date: Date = Date(),
+
+        @ColumnInfo(name = "timestamp")
+        @SerializedName("timestamp") var date: Date = Date(),
+
         @ColumnInfo(name = "nickname")
         @SerializedName("nickname") var nickname: String = "") {
     @ColumnInfo(name = "id")
