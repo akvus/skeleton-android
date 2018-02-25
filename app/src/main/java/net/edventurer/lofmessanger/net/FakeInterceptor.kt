@@ -7,7 +7,6 @@ import okhttp3.*
  */
 class FakeInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
-        val uri = chain.request().url().uri()
         val method = chain.request().method()
         val responseString = if (method == "POST") {
             "{}"

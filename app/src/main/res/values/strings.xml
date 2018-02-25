@@ -17,4 +17,6 @@
     <string name="preference_url_summary">Provide URL of your server</string>
     <string name="settings_error_nickname_empty">Nickname cannot be empty</string>
     <string name="settings_error_url_invalid">Url is invalid</string>
+    <string name="preference_token_title">Token</string>
+    <string name="preference_token_summary">Provide auth token</string>
 </resources>
