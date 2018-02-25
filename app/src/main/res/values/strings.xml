@@ -15,4 +15,6 @@
     <string name="preference_nickname_summary">Provide your nickname</string>
     <string name="preference_url_title">Server url</string>
     <string name="preference_url_summary">Provide URL of your server</string>
+    <string name="settings_error_nickname_empty">Nickname cannot be empty</string>
+    <string name="settings_error_url_invalid">Url is invalid</string>
 </resources>

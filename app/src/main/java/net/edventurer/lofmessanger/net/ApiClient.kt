@@ -24,6 +24,7 @@ class ApiClient(
             httpClientBuilder.addInterceptor(HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BODY
             })
+            httpClientBuilder.interceptors().add(FakeInterceptor())
         }
 
         httpClientBuilder.build()

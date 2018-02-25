@@ -7,7 +7,7 @@ import android.content.SharedPreferences
  */
 class MyPreferences(sharedPreferences: SharedPreferences) : Preferences(sharedPreferences) {
     fun getNickname(): String {
-        return getString(nicknameKey)
+        return getString(nicknameKey, defaultNickName)
     }
 
     fun getApiUrl(): String {
@@ -15,9 +15,10 @@ class MyPreferences(sharedPreferences: SharedPreferences) : Preferences(sharedPr
     }
 
     companion object {
-        const val nicknameKey = "nickname"
-        const val apiUrlKey = "apiUrl"
+        const val nicknameKey = "nickPreference"
+        const val apiUrlKey = "urlPreference"
 
+        const val defaultNickName = "User"
         const val defaultApiUrl = "http://api.example.com/v1/"
     }
 }
