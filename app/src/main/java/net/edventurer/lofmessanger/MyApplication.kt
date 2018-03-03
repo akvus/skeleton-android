@@ -9,7 +9,7 @@ import timber.log.Timber
  * Created by akvus on 2/17/18.
  *
  * todo
- * (fork: FCM -> notifications, message encryption)
+ * (fork: FCM -> notifications, message encryption with random IV, test encryption)
  */
 class MyApplication : DaggerApplication() {
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> =

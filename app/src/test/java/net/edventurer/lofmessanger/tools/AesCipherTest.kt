@@ -30,11 +30,17 @@ class AesCipherTest {
         assertThat(decrypted, equalTo(text))
     }
 
+    @Test
     fun encrypt() {
-        // todo
+        val expected = byteArrayOf(-75, -103, -72, -12, -102, -2, 112, 7, 73, 111, 14, -123, 84, 122, -105, -11)
+        val encrypted = AesCipher.encrypt(iv, key, text.toByteArray())
+        assertThat(encrypted, equalTo(expected))
     }
 
+    @Test
     fun decrypt() {
-        // todo
+        val encrypted = byteArrayOf(-75, -103, -72, -12, -102, -2, 112, 7, 73, 111, 14, -123, 84, 122, -105, -11)
+        val decrypted = String(AesCipher.decrypt(iv, key, encrypted), Charsets.UTF_8)
+        assertThat(decrypted, equalTo(text))
     }
 }
