@@ -23,7 +23,7 @@ $jsonFileName = './messages.json';
 $messagesFile = file_get_contents($jsonFileName, FILE_USE_INCLUDE_PATH);
 $messagesJson = json_decode($messagesFile, true);
 if ($action == 'add') {
-    $messagesJson['messages'][] = array('nickname' => $nickname, 'message' => $message, 'timestamp' => time());
+    $messagesJson['messages'][] = array('nickname' => $nickname, 'message' => $message, 'timestamp' => round(microtime(true) * 1000));
     echo '{"error":0, "messages":[]}';
 } else {
     $resultMessages = array();

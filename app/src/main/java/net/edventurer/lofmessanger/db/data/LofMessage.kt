@@ -15,7 +15,7 @@ data class LofMessage(
         @SerializedName("message") var message: String = "",
 
         @ColumnInfo(name = "timestamp")
-        @SerializedName("timestamp") var date: Date = Date(),
+        @SerializedName("timestamp") var timestamp: Long = Date().time,
 
         @ColumnInfo(name = "nickname")
         @SerializedName("nickname") var nickname: String = "") {

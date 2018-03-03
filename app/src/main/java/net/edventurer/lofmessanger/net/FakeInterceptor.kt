@@ -8,8 +8,8 @@ import okhttp3.*
 class FakeInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val responseString =
-                "{\"error\": 0, \"messages\":[{\"message\":\"Some message\", \"nickname\":\"Alice\"}, " +
-                        "{\"message\":\"Some message2\", \"nickname\":\"Alice\"}]}"
+                "{\"error\": 0, \"messages\":[{\"message\":\"Some message\", \"nickname\":\"Alice\", \"timestamp\": 1519592549000}, " +
+                        "{\"message\":\"Some message2\", \"nickname\":\"Alice\", \"timestamp\": 1519592549000}]}"
 
         return Response.Builder()
                 .code(200)

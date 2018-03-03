@@ -7,8 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import net.edventurer.lofmessanger.MyContract
 import net.edventurer.lofmessanger.R
 import net.edventurer.lofmessanger.db.data.LofMessage
+import net.edventurer.lofmessanger.ext.formatted
+import java.util.*
 
 /**
  * Created by akvus on 2/17/18.
@@ -33,6 +36,7 @@ class MessagesAdapter : RecyclerView.Adapter<MessagesAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.tvNickname.text = lofMessages[position].nickname
         holder.tvMessage.text = lofMessages[position].message
+        holder.tvDate.text = Date(lofMessages[position].timestamp).formatted(MyContract.dateTimeFormat)
         holder.llRoot.setOnLongClickListener {
             onDelete.value = lofMessages[holder.adapterPosition]
             deleteMessage(holder.adapterPosition)
@@ -43,6 +47,7 @@ class MessagesAdapter : RecyclerView.Adapter<MessagesAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvNickname: TextView = view.findViewById(R.id.tvNickname)
         val tvMessage: TextView = view.findViewById(R.id.tvMessage)
+        val tvDate: TextView = view.findViewById(R.id.tvDate)
         val llRoot: LinearLayout = view.findViewById(R.id.llRoot)
     }
 
