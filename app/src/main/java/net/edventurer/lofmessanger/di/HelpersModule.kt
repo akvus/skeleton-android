@@ -8,6 +8,7 @@ import net.edventurer.lofmessanger.MyContract
 import net.edventurer.lofmessanger.db.MyDatabase
 import net.edventurer.lofmessanger.net.ApiClient
 import net.edventurer.lofmessanger.net.ApiInterface
+import net.edventurer.lofmessanger.tools.AesCipher
 import net.edventurer.lofmessanger.tools.preferences.MyPreferences
 
 /**
@@ -30,4 +31,7 @@ class HelpersModule {
 
     @Provides
     fun apiInterface(apiClient: ApiClient) : ApiInterface = apiClient.service
+
+    @Provides
+    fun aesCipher() = AesCipher
 }
