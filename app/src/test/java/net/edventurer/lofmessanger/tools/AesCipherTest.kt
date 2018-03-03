@@ -2,6 +2,7 @@ package net.edventurer.lofmessanger.tools
 
 import net.edventurer.lofmessanger.ext.hexToByteArray
 import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.CoreMatchers.not
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -42,5 +43,18 @@ class AesCipherTest {
         val encrypted = byteArrayOf(-75, -103, -72, -12, -102, -2, 112, 7, 73, 111, 14, -123, 84, 122, -105, -11)
         val decrypted = String(AesCipher.decrypt(iv, key, encrypted), Charsets.UTF_8)
         assertThat(decrypted, equalTo(text))
+    }
+
+    @Test
+    fun randomIv16BytesLong() {
+        val randomIv = AesCipher.generateRandomIv()
+        assertThat(randomIv.size, equalTo(16))
+    }
+
+    @Test
+    fun randomIvIsRandom() {
+        val iv1 = AesCipher.generateRandomIv()
+        val iv2 = AesCipher.generateRandomIv()
+        assertThat(iv1, not(equalTo(iv2)))
     }
 }

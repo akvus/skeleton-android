@@ -3,6 +3,7 @@ package net.edventurer.lofmessanger.tools
 import java.security.InvalidAlgorithmParameterException
 import java.security.InvalidKeyException
 import java.security.NoSuchAlgorithmException
+import java.security.SecureRandom
 import javax.crypto.BadPaddingException
 import javax.crypto.Cipher
 import javax.crypto.IllegalBlockSizeException
@@ -26,5 +27,11 @@ object AesCipher {
         return Cipher.getInstance("AES/CBC/PKCS5Padding").apply {
             init(Cipher.DECRYPT_MODE, SecretKeySpec(keyBytes, "AES"), IvParameterSpec(ivBytes))
         }.doFinal(textBytes)
+    }
+
+    fun generateRandomIv(): ByteArray {
+        val ivBytes = ByteArray(16)
+        SecureRandom().nextBytes(ivBytes)
+        return ivBytes
     }
 }
