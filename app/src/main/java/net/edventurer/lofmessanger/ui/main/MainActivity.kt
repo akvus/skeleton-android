@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.LinearSmoothScroller
 import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
@@ -27,6 +28,8 @@ class MainActivity : MyDaggerAppCompactActivity<MainViewState>() {
     private var viewModel: MainActivityViewModel? = null
 
     private var adapter: MessagesAdapter? = null
+    private var layoutManager: LinearLayoutManager? = null
+    private var smoothScroller: LinearSmoothScroller? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -54,7 +57,15 @@ class MainActivity : MyDaggerAppCompactActivity<MainViewState>() {
             it?.let { viewModel?.process(DeleteMessageIntention(it)) }
         })
         rvMessages.adapter = adapter
-        rvMessages.layoutManager = LinearLayoutManager(this)
+
+        layoutManager = LinearLayoutManager(this)
+        rvMessages.layoutManager = layoutManager
+
+        smoothScroller = object: LinearSmoothScroller(this) {
+            override fun getVerticalSnapPreference(): Int {
+                return LinearSmoothScroller.SNAP_TO_START
+            }
+        }
 
         etMessage.setOnKeyListener({ _, keyCode, event ->
             if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
@@ -73,6 +84,10 @@ class MainActivity : MyDaggerAppCompactActivity<MainViewState>() {
     override fun render(viewState: MainViewState) {
         if (viewState.messagesToAdd != null) {
             adapter?.addMessages(viewState.messagesToAdd)
+            adapter?.itemCount?.let {
+                smoothScroller?.targetPosition = it -1
+                layoutManager?.startSmoothScroll(smoothScroller)
+            }
         }
     }
 
