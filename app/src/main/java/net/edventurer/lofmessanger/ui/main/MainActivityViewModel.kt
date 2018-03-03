@@ -41,7 +41,7 @@ class MainActivityViewModel @Inject constructor(
             with(LofMessage(message = message, nickname = preferences.getNickname())) {
                 sendMessage(this)
                 saveMessage(this)
-                state.value = getState().copy(messagesToAdd = listOf(this))
+                state.value = getState().copy(messagesToAdd = listOf(this), scrollToNewest = true)
             }
         }
     }
@@ -52,7 +52,7 @@ class MainActivityViewModel @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     it.messages.forEach { message -> saveMessage(message) }
-                    state.value = getState().copy(messagesToAdd = it.messages)
+                    state.value = getState().copy(messagesToAdd = it.messages, scrollToNewest = true)
                 }, Timber::e)
     }
 
@@ -62,7 +62,7 @@ class MainActivityViewModel @Inject constructor(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    state.value = getState().copy(messagesToAdd = it)
+                    state.value = getState().copy(messagesToAdd = it, scrollToNewest = true)
                 }, Timber::e)
     }
 

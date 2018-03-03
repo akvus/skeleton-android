@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context="net.edventurer.lofmessanger.ui.main.MainActivity">
 
     <EditText
@@ -16,6 +18,8 @@
         android:ems="10"
         android:hint="@string/hint_message"
         android:inputType="textPersonName"
+        android:nextFocusUp="@id/etMessage"
+        android:nextFocusLeft="@id/etMessage"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnSend"
         app:layout_constraintStart_toStartOf="parent" />

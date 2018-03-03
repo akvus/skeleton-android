@@ -84,10 +84,17 @@ class MainActivity : MyDaggerAppCompactActivity<MainViewState>() {
     override fun render(viewState: MainViewState) {
         if (viewState.messagesToAdd != null) {
             adapter?.addMessages(viewState.messagesToAdd)
-            adapter?.itemCount?.let {
-                smoothScroller?.targetPosition = it -1
-                layoutManager?.startSmoothScroll(smoothScroller)
-            }
+        }
+
+        if (viewState.scrollToNewest != null && viewState.scrollToNewest == true) {
+            scrollToNewest()
+        }
+    }
+
+    private fun scrollToNewest() {
+        adapter?.itemCount?.let {
+            smoothScroller?.targetPosition = it -1
+            layoutManager?.startSmoothScroll(smoothScroller)
         }
     }
 
