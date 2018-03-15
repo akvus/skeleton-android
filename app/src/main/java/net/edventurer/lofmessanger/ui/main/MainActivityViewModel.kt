@@ -47,7 +47,7 @@ class MainActivityViewModel @Inject constructor(
     }
 
     private fun retrieveMessages() {
-        disposables += apiInterface.getMessages(preferences.getTokenPreference(), preferences.getNickname())
+        disposables += apiInterface.getMessages(preferences.getToken(), preferences.getNickname())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
@@ -77,7 +77,7 @@ class MainActivityViewModel @Inject constructor(
     }
 
     private fun sendMessage(message: LofMessage) {
-        disposables += apiInterface.sendMessage(preferences.getTokenPreference(),
+        disposables += apiInterface.sendMessage(preferences.getToken(),
                 message.nickname, message.message)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
