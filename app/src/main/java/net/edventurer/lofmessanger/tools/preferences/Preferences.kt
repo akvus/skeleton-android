@@ -16,4 +16,14 @@ abstract class Preferences(private val sharedPreferences: SharedPreferences) {
             putString(key, value)
         }
     }
+
+    fun getBoolean(key: String, default: Boolean = false): Boolean {
+        return sharedPreferences.getBoolean(key, default)
+    }
+
+    fun putBoolean(key: String, value: Boolean) {
+        sharedPreferences.edit {
+            putBoolean(key, value)
+        }
+    }
 }
