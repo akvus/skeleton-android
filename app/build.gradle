@@ -70,6 +70,10 @@ dependencies {
     implementation libs.kotlin.ktx
 
     testImplementation testLibs.junit
+    testImplementation testLibs.mockito
+    testImplementation testLibs.mockitoKotlin
+    testImplementation testLibs.hamcrest
+    testImplementation testLibs.robolectric
 
     androidTestImplementation testAndroidLibs.runner
     androidTestImplementation testAndroidLibs.espresso.core

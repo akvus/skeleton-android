@@ -14,7 +14,7 @@ class MyPreferences(sharedPreferences: SharedPreferences) : Preferences(sharedPr
         return if (getString(apiUrlKey).isEmpty()) defaultApiUrl else getString(apiUrlKey)
     }
 
-    fun getTokenPreference(): String {
+    fun getToken(): String {
         return getString(tokenKey)
     }
 
